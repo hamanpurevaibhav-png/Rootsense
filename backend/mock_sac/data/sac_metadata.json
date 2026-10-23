@@ -1,0 +1,112 @@
+{
+  "model_id": "CORP_FINANCE_PLANNING",
+  "model_description": "Enterprise Corporate Finance & Headcount Planning Model",
+  "currency": "USD",
+  "accounts": {
+    "EXP_TRAVEL_ENTERTAINMENT": {
+      "account_id": "EXP_TRAVEL_ENTERTAINMENT",
+      "description": "Travel & Entertainment Expenses",
+      "account_type": "EXP",
+      "aggregation": "SUM",
+      "aggregation_type": "SUM",
+      "rollup": "SUM",
+      "formula": null,
+      "edit_status": "UNLOCKED"
+    },
+    "REV_GROSS": {
+      "account_id": "REV_GROSS",
+      "description": "Gross Revenue",
+      "account_type": "INC",
+      "aggregation": "SUM",
+      "aggregation_type": "SUM",
+      "rollup": "SUM",
+      "formula": null,
+      "edit_status": "UNLOCKED"
+    },
+    "EXP_COGS": {
+      "account_id": "EXP_COGS",
+      "description": "Cost of Goods Sold",
+      "account_type": "EXP",
+      "aggregation": "SUM",
+      "aggregation_type": "SUM",
+      "rollup": "SUM",
+      "formula": null,
+      "edit_status": "UNLOCKED"
+    },
+    "EXP_HEADCOUNT": {
+      "account_id": "EXP_HEADCOUNT",
+      "description": "Departmental Headcount Allocation",
+      "account_type": "AST",
+      "aggregation": "SUM",
+      "aggregation_type": "SUM",
+      "rollup": "SUM",
+      "formula": null,
+      "edit_status": "UNLOCKED"
+    },
+    "MARGIN_PCT": {
+      "account_id": "MARGIN_PCT",
+      "description": "Total Gross Margin %",
+      "account_type": "FORMULA",
+      "aggregation": "FORMULA",
+      "aggregation_type": "FORMULA",
+      "formula": "[Gross Margin]/[Revenue]",
+      "rollup": "WEIGHTED_AVG",
+      "edit_status": "UNLOCKED"
+    },
+    "JAN_2025_PERIOD": {
+      "account_id": "JAN_2025_PERIOD",
+      "description": "January 2025 Planning Time Slice",
+      "account_type": "TIME_SLICE",
+      "aggregation": "SUM",
+      "aggregation_type": "SUM",
+      "rollup": "SUM",
+      "formula": null,
+      "edit_status": "LOCKED",
+      "lock_status": "LOCKED",
+      "status": "LOCKED"
+    }
+  },
+  "versions": {
+    "Public.Forecast_2025": {
+      "version_id": "Public.Forecast_2025",
+      "version_type": "PUBLIC",
+      "category": "Forecast",
+      "is_published": true,
+      "owner": "SYSTEM_PUBLIC"
+    },
+    "Private.Draft_v1": {
+      "version_id": "Private.Draft_v1",
+      "version_type": "PRIVATE",
+      "category": "Forecast",
+      "base_version": "Public.Forecast_2025",
+      "is_published": false,
+      "owner": "analyst.user@cognizant.com"
+    }
+  },
+  "data_locks": {
+    "JAN_2025_PERIOD": {
+      "period_id": "JAN_2025_PERIOD",
+      "time_period": "202501",
+      "label": "January 2025",
+      "version": "Public.Forecast_2025",
+      "status": "LOCKED",
+      "lock_status": "LOCKED",
+      "edit_status": "LOCKED",
+      "locked_by": "finance.controller@cognizant.com",
+      "locked_at": "2025-02-05T18:00:00Z",
+      "reason": "January 2025 Actuals & Planning Close Finalized in Data Locking Console"
+    },
+    "202509": {
+      "period_id": "SEP_2025_PERIOD",
+      "time_period": "202509",
+      "label": "September 2025",
+      "version": "Public.Forecast_2025",
+      "status": "UNLOCKED",
+      "lock_status": "UNLOCKED",
+      "edit_status": "UNLOCKED",
+      "locked_by": null,
+      "locked_at": null,
+      "reason": "Active Forecast Cycle"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# Environment & Secrets
+.env
+.env.local
+.certs/
+
+# Virtual Environment & Python Bytecode
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Vector DB & Runtime Logs
+chroma_db/
+*.db
+*.sqlite3
+logs/
+*.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

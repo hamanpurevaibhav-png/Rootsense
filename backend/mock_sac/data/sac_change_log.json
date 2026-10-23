@@ -1,0 +1,98 @@
+{
+  "model_id": "CORP_FINANCE_PLANNING",
+  "tenant_id": "SAC_PROD_COGNIZANT_01",
+  "records": [
+    {
+      "log_id": "CHG-20250915-101400-001",
+      "model_id": "CORP_FINANCE_PLANNING",
+      "timestamp": "2025-09-15T10:14:00Z",
+      "actor": "analyst.user@cognizant.com",
+      "actor_type": "USER",
+      "operation": "MANUAL_EDIT",
+      "source_process": "SAC_STORY_GRID_INPUT",
+      "multi_action_id": null,
+      "publish_status": "PUBLISHED",
+      "is_published": true,
+      "coordinates": {
+        "Account": "EXP_TRAVEL_ENTERTAINMENT",
+        "CostCenter": "CC_NA_1020",
+        "Version": "Public.Forecast_2025",
+        "Time": "202509"
+      },
+      "old_value": 45000.00,
+      "new_value": 70000.00,
+      "delta": 25000.00,
+      "currency": "USD"
+    },
+    {
+      "log_id": "CHG-20250915-103000-002",
+      "model_id": "CORP_FINANCE_PLANNING",
+      "timestamp": "2025-09-15T10:30:00Z",
+      "actor": "SYSTEM_SAC_SCHEDULER",
+      "actor_type": "SYSTEM",
+      "operation": "MULTI_ACTION_OVERWRITE",
+      "source_process": "DA_OVERHEAD_ALLOCATION",
+      "multi_action_id": "DA_OVERHEAD_ALLOCATION",
+      "publish_status": "PUBLISHED",
+      "is_published": true,
+      "coordinates": {
+        "Account": "EXP_TRAVEL_ENTERTAINMENT",
+        "CostCenter": "CC_NA_1020",
+        "Version": "Public.Forecast_2025",
+        "Time": "202509"
+      },
+      "old_value": 70000.00,
+      "new_value": 52000.00,
+      "delta": -18000.00,
+      "currency": "USD"
+    },
+    {
+      "log_id": "CHG-20250915-110500-003",
+      "model_id": "CORP_FINANCE_PLANNING",
+      "timestamp": "2025-09-15T11:05:00Z",
+      "actor": "analyst.user@cognizant.com",
+      "actor_type": "USER",
+      "operation": "PRIVATE_VERSION_EDIT",
+      "source_process": "SAC_STORY_GRID_INPUT",
+      "multi_action_id": null,
+      "publish_status": "UNPUBLISHED",
+      "is_published": false,
+      "coordinates": {
+        "Account": "EXP_HEADCOUNT",
+        "CostCenter": "CC_NA_1020",
+        "Version": "Private.Draft_v1",
+        "Time": "202509"
+      },
+      "old_value": 120.00,
+      "new_value": 135.00,
+      "delta": 15.00,
+      "currency": "HEADCOUNT"
+    }
+  ],
+  "multi_action_history": [
+    {
+      "execution_id": "MA-EXEC-20250915-1030",
+      "model_id": "CORP_FINANCE_PLANNING",
+      "multi_action_id": "DA_OVERHEAD_ALLOCATION",
+      "multi_action_name": "Corporate Overhead Allocation & Realignment",
+      "actor": "SYSTEM_SAC_SCHEDULER",
+      "triggered_by": "SYSTEM_SAC_SCHEDULER",
+      "trigger_type": "SCHEDULED",
+      "start_time": "2025-09-15T10:29:45Z",
+      "end_time": "2025-09-15T10:30:00Z",
+      "timestamp": "2025-09-15T10:30:00Z",
+      "status": "COMPLETED",
+      "target_version": "Public.Forecast_2025",
+      "target_time_period": "202509",
+      "affected_accounts": [
+        "EXP_TRAVEL_ENTERTAINMENT"
+      ],
+      "affected_cost_centers": [
+        "CC_NA_1020"
+      ],
+      "old_value": 70000.00,
+      "new_value": 52000.00,
+      "description": "Scheduled execution of DA_OVERHEAD_ALLOCATION by SYSTEM_SAC_SCHEDULER overwrote manual user adjustment from 70000.00 to 52000.00."
+    }
+  ]
+}

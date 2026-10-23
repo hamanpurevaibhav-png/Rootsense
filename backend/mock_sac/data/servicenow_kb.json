@@ -1,0 +1,10 @@
+[
+  {
+    "kb_id": "KB0010421",
+    "source": "ServiceNow",
+    "category": "SAP Analytics Cloud / Access & Authorization",
+    "title": "SAC Planning Model Read/Write Role Request Procedure",
+    "symptoms": "User receives insufficient privileges error or cannot see restricted cost center data.",
+    "resolution": "Submit an IAM access request for role Z_SAC_PLANNER_WRITE specifying the target Cost Center hierarchy node and obtain Finance Controller approval."
+  }
+]

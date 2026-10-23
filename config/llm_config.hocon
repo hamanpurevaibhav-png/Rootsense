@@ -1,0 +1,41 @@
+# ============================================================================
+# Shared LLM Configuration (Single Source of Truth)
+# ============================================================================
+# Configured with Google Gemini 3.x Flash models as primary + automatic fallbacks.
+# Reads GOOGLE_API_KEY / GEMINI_API_KEY automatically from your .env / environment.
+{
+    "llm_config": {
+        "fallbacks": [
+            {
+                "class": "gemini",
+                "model_name": "gemini-3.5-flash",
+                "temperature": 1.0,
+                "max_retries": 1
+            },
+            {
+                "class": "gemini",
+                "model_name": "gemini-3.6-flash",
+                "temperature": 1.0,
+                "max_retries": 1
+            },
+            {
+                "class": "gemini",
+                "model_name": "gemini-3.5-flash-lite",
+                "temperature": 1.0,
+                "max_retries": 1
+            },
+            {
+                "class": "gemini",
+                "model_name": "gemini-3-flash-preview",
+                "temperature": 1.0,
+                "max_retries": 1
+            },
+            {
+                "class": "gemini",
+                "model_name": "gemini-3.8-flash",
+                "temperature": 1.0,
+                "max_retries": 1
+            }
+        ]
+    }
+}

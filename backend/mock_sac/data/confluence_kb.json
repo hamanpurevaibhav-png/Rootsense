@@ -1,0 +1,9 @@
+[
+  {
+    "doc_id": "CONF-SAC-8801",
+    "source": "Confluence",
+    "space": "FINANCE_COE",
+    "title": "SAC Corporate Finance Planning Calendar & Data Action Schedule",
+    "content": "DA_OVERHEAD_ALLOCATION runs every hour at :30 past the hour via SYSTEM_SAC_SCHEDULER to redistribute shared corporate overhead across regional cost centers."
+  }
+]
