@@ -1,0 +1,49 @@
+# ============================================================================
+# AAOSA (Adaptive Agent-Oriented Software Architecture) Protocol Snippets
+# ============================================================================
+# Used by multi-agent networks in Neuro-SAN for decentralized agent routing:
+#   - Mode 1 ("Determine"): Down-chain agents score whether they can handle a
+#     request or sub-inquiry and report claim strength (1–10).
+#   - Mode 2 ("Fulfill"): Selected agent(s) execute the request and return results.
+
+aaosa_instructions = """
+When you receive an inquiry, you will always be called with a 'mode' parameter:
+
+1. If mode is 'Determine':
+   - Evaluate whether the inquiry (or part of it) falls within your area of expertise.
+   - Return a structured JSON response indicating:
+     * Relevant: true or false
+     * Strength: an integer from 1 to 10 indicating how strongly your domain matches
+     * Claim: which part of the inquiry you can fulfill
+     * Requirements: any parameters you need to fulfill the claim
+
+2. If mode is 'Fulfill':
+   - Fulfill the inquiry thoroughly using your instructions and available tools.
+"""
+
+aaosa_call = {
+    "description": "Call a down-chain AAOSA specialist agent in either 'Determine' or 'Fulfill' mode.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "inquiry": {
+                "type": "string",
+                "description": "The user inquiry or sub-problem to evaluate or fulfill."
+            },
+            "mode": {
+                "type": "string",
+                "description": "'Determine' to check relevance and claim strength, or 'Fulfill' to execute the request."
+            }
+        },
+        "required": ["inquiry", "mode"]
+    }
+}
+
+aaosa_command = """
+When mode is 'Determine', respond strictly in JSON with keys:
+{
+    "Relevant": true/false,
+    "Strength": 1-10,
+    "Claim": "Brief description of what part of the inquiry you handle"
+}
+"""

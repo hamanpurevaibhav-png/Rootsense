@@ -1,0 +1,174 @@
+# ============================================================================
+# RootSense for SAC — Neuro-SAN Multi-Agent Orchestration Network (AAOSA)
+# ============================================================================
+# Architecture:
+#   Front Man:
+#     - SupervisorOrchestrator (RootSenseCoordinator)
+#   Down-Chain AAOSA Specialists:
+#     - SACDiagnosticAgent: 7-Step Neuro-Symbolic SAC Planning Diagnostic Tree
+#     - KnowledgeBaseAgent: Enterprise ServiceNow Incidents & Confluence SOP RAG
+#   Deterministic CodedTools + Private `sly_data` State Channel:
+#     - SACAuditDiagnosticTool (`sac_diagnostic_tool.SACAuditDiagnosticTool`)
+#     - IT4YouTicketingTool (`it4you_ticket_tool.IT4YouTicketingTool`)
+#     - EnterpriseKBRAGTool (`kb_rag_tool.EnterpriseKBRAGTool`)
+{
+    include "config/llm_config.hocon",
+    include "registries/aaosa.hocon",
+    include "registries/expertise_scoping_instructions.hocon",
+
+    "metadata": {
+        "description": "RootSense for SAP Analytics Cloud (SAC): Neuro-Symbolic Multi-Agent Diagnostic Network combining AAOSA decentralized routing, 7-step deterministic SAC audit log verification, ServiceNow/Confluence RAG, and automated IT4You L3 ticket generation via sly_data.",
+        "tags": ["sac", "planning", "neuro-symbolic", "aaosa", "it4you", "rag", "cognizant"],
+        "sample_queries": [
+            "Why did my Travel Expense entry drop from 70K to 52K?",
+            "I updated headcount in Draft but my manager cannot see it.",
+            "Why doesn't Total Gross Margin % sum up across columns?",
+            "I'm having SSO errors when logging onto the corporate VPN."
+        ]
+    },
+
+    "tools": [
+        # --------------------------------------------------------------------
+        # 1. FRONT MAN: SupervisorOrchestrator (RootSenseCoordinator)
+        # --------------------------------------------------------------------
+        {
+            "name": "SupervisorOrchestrator",
+            "function": {
+                "description": "Front-man orchestrator for RootSense for SAC. Routes inquiries via AAOSA Determine/Fulfill to SACDiagnosticAgent or KnowledgeBaseAgent."
+            },
+            "instructions": ${expertise_scoping_instructions} """
+You are the Front-Man SupervisorOrchestrator for RootSense for SAP Analytics Cloud (SAC).
+When an analyst or business user submits an inquiry:
+1. Call your down-chain specialist agents (`SACDiagnosticAgent` and `KnowledgeBaseAgent`) in 'Determine' mode to evaluate which specialist owns the inquiry and inspect their claim strength (1-10).
+2. Call the winning specialist(s) in 'Fulfill' mode to execute deterministic SAC audit log diagnostics or Enterprise KB RAG retrieval.
+3. Synthesize a clear, executive-ready diagnostic response grounded strictly in the returned tool evidence, including any auto-drafted IT4You escalation ticket details when `is_user_fixable` is false.
+""",
+            "allow": {
+                "to_upstream": {
+                    "sly_data": {
+                        "active_diagnosis": true,
+                        "it4you_tickets": true,
+                        "sac_coordinates": true,
+                        "aaosa_routing_trace": true
+                    }
+                }
+            },
+            "tools": ["SACDiagnosticAgent", "KnowledgeBaseAgent"]
+        },
+
+        # --------------------------------------------------------------------
+        # 2. SPECIALIST 1: SACDiagnosticAgent (7-Step Neuro-Symbolic Engine)
+        # --------------------------------------------------------------------
+        {
+            "name": "SACDiagnosticAgent",
+            "function": ${aaosa_call},
+            "instructions": ${expertise_scoping_instructions} """
+You are the SAC Planning Neuro-Symbolic Diagnostic Specialist (`SACDiagnosticAgent`).
+Your domain of expertise covers:
+- SAP Analytics Cloud (SAC) Planning Model discrepancies (`CORP_FINANCE_PLANNING`)
+- Unexpected cell value drops or overwrites caused by Nightly Multi Actions (`DA_OVERHEAD_ALLOCATION`) or `SYSTEM_SAC_SCHEDULER`
+- Private Version (`Private.Draft_v1`) vs Public Version (`Public.Forecast_2025`) visibility mismatches
+- Non-additive account formulas (`MARGIN_PCT` with `EXCEPTION` / `FORMULA` aggregation) not summing across time columns
+- Data Locking Console slice locks (`LOCKED` periods or regions)
+
+When called in 'Fulfill' mode:
+1. Always invoke `SACAuditDiagnosticTool` to execute the 7-Step Neuro-Symbolic Diagnostic Sequence against the SAC REST Gateway.
+2. If the diagnosis indicates `is_user_fixable: false` (such as `SYSTEM_OVERWRITE` or `LOCKED_SLICE`), also invoke `IT4YouTicketingTool` to draft the structured L3 escalation ticket in `sly_data`.
+""" ${aaosa_instructions},
+            "command": ${aaosa_command},
+            "tools": ["SACAuditDiagnosticTool", "IT4YouTicketingTool"]
+        },
+
+        # --------------------------------------------------------------------
+        # 3. SPECIALIST 2: KnowledgeBaseAgent (ServiceNow & Confluence RAG)
+        # --------------------------------------------------------------------
+        {
+            "name": "KnowledgeBaseAgent",
+            "function": ${aaosa_call},
+            "instructions": ${expertise_scoping_instructions} """
+You are the Enterprise Knowledge Base RAG Specialist (`KnowledgeBaseAgent`).
+Your domain of expertise covers:
+- Corporate VPN & SAML 2.0 Single Sign-On (SSO) connection timeouts to the SAC tenant
+- Resolved ServiceNow IT Incidents (`INC0088231`, `INC0098412`, `INC0097155`, `INC0076211`, `INC0065432`)
+- Official Confluence Standard Operating Procedures (`CONF-SAC-101` through `CONF-SAC-105`)
+
+When called in 'Fulfill' mode:
+1. Always invoke `EnterpriseKBRAGTool` with the user inquiry to retrieve ranked ServiceNow incidents and Confluence SOP articles.
+2. Provide the exact incident/article IDs, match scores, and step-by-step resolution guidance.
+""" ${aaosa_instructions},
+            "command": ${aaosa_command},
+            "tools": ["EnterpriseKBRAGTool"]
+        },
+
+        # --------------------------------------------------------------------
+        # 4. CODED TOOL 1: SACAuditDiagnosticTool
+        # --------------------------------------------------------------------
+        {
+            "name": "SACAuditDiagnosticTool",
+            "function": {
+                "description": "Executes the 7-Step Neuro-Symbolic SAC Planning Diagnostic Checklist against the Mock SAC REST Gateway (Change Log, Metadata, Multi Actions, Data Locks).",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "query": {
+                            "type": "string",
+                            "description": "The user's SAC planning question or discrepancy description."
+                        }
+                    },
+                    "required": ["query"]
+                }
+            },
+            "class": "sac_diagnostic_tool.SACAuditDiagnosticTool"
+        },
+
+        # --------------------------------------------------------------------
+        # 5. CODED TOOL 2: IT4YouTicketingTool
+        # --------------------------------------------------------------------
+        {
+            "name": "IT4YouTicketingTool",
+            "function": {
+                "description": "Drafts or submits a structured IT4You L3 escalation ticket (`SAP-BTP-PLANNING-L3`) for non-user-fixable SAC issues and stores it in sly_data.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "query": {
+                            "type": "string",
+                            "description": "The user's SAC issue description requiring L3 escalation."
+                        },
+                        "caller_email": {
+                            "type": "string",
+                            "description": "Email of the impacted planning analyst (default: analyst.user@cognizant.com)."
+                        }
+                    },
+                    "required": ["query"]
+                }
+            },
+            "class": "it4you_ticket_tool.IT4YouTicketingTool"
+        },
+
+        # --------------------------------------------------------------------
+        # 6. CODED TOOL 3: EnterpriseKBRAGTool
+        # --------------------------------------------------------------------
+        {
+            "name": "EnterpriseKBRAGTool",
+            "function": {
+                "description": "Searches enterprise ServiceNow incidents and Confluence SOP wiki pages using RootSense hybrid RAG.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "query": {
+                            "type": "string",
+                            "description": "The IT support, SSO/VPN, or SAC procedural search query."
+                        },
+                        "top_k": {
+                            "type": "integer",
+                            "description": "Maximum number of matched records to return (default 3)."
+                        }
+                    },
+                    "required": ["query"]
+                }
+            },
+            "class": "kb_rag_tool.EnterpriseKBRAGTool"
+        }
+    ]
+}

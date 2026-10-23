@@ -1,0 +1,7 @@
+# ============================================================================
+# RootSense for SAC — Neuro-SAN Agent Network Manifest
+# ============================================================================
+# Maps HOCON files to boolean values (true = served by Neuro-SAN & nsflow UI).
+{
+    "rootsense_sac.hocon": true
+}
