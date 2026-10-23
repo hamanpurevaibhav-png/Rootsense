@@ -1,10 +1,111 @@
 [
   {
-    "kb_id": "KB0010421",
+    "item_id": "INC0098412",
+    "id": "INC0098412",
+    "ticket_id": "INC0098412",
     "source": "ServiceNow",
-    "category": "SAP Analytics Cloud / Access & Authorization",
-    "title": "SAC Planning Model Read/Write Role Request Procedure",
-    "symptoms": "User receives insufficient privileges error or cannot see restricted cost center data.",
-    "resolution": "Submit an IAM access request for role Z_SAC_PLANNER_WRITE specifying the target Cost Center hierarchy node and obtain Finance Controller approval."
+    "category": "SAC Planning / Data Actions & Batch Scheduling",
+    "priority": "P2 - High",
+    "title": "Data Action overwriting Q3 budget manual adjustments",
+    "symptoms": "Manual planner adjustments entered into the Public budget/forecast version disappear or revert after hourly scheduled Multi Action batch allocations execute.",
+    "resolution": "User edited Public directly. Advise working in Private draft version first, then publishing after batch allocation runs. If a scheduled Data Action (such as DA_OVERHEAD_ALLOCATION) overwrites valid committed figures, escalate to SAP-BTP-PLANNING-L3 via IT4You.",
+    "keywords": [
+      "data action",
+      "overwriting",
+      "overwrite",
+      "q3 budget",
+      "manual adjustments",
+      "vanished",
+      "private draft",
+      "batch allocation"
+    ],
+    "is_user_fixable": false
+  },
+  {
+    "item_id": "INC0097155",
+    "id": "INC0097155",
+    "ticket_id": "INC0097155",
+    "source": "ServiceNow",
+    "category": "SAC Planning / Data Locking & Governance",
+    "priority": "P3 - Moderate",
+    "title": "Cannot edit cells in Revenue Planning grid",
+    "symptoms": "Planning grid cells appear greyed out or read-only when attempting to input revenue or expense figures for a closed or restricted period.",
+    "resolution": "Target slice is locked via the Data Locking Console. Administrator must unlock the specific period/region cell intersection after obtaining Finance Controller sign-off.",
+    "keywords": [
+      "cannot edit",
+      "greyed out",
+      "read-only",
+      "revenue planning grid",
+      "data locking console",
+      "locked slice",
+      "unlock"
+    ],
+    "is_user_fixable": false
+  },
+  {
+    "item_id": "INC0088231",
+    "id": "INC0088231",
+    "ticket_id": "INC0088231",
+    "source": "ServiceNow",
+    "category": "Identity & Connectivity / SSO & VPN",
+    "priority": "P2 - High",
+    "title": "VPN SSO Connection Timeout to SAC Tenant",
+    "symptoms": "User experiences HTTP 504 gateway timeout, SAML assertion loop, or VPN SSO connection drop when authenticating into the SAP Analytics Cloud tenant.",
+    "resolution": "Refresh the SAML 2.0 corporate token or flush local browser cookies/DNS cache. Ensure global secure tunnel client is upgraded to v4.2.",
+    "keywords": [
+      "vpn",
+      "sso",
+      "connection timeout",
+      "saml 2.0",
+      "single sign-on",
+      "cookies",
+      "dns cache",
+      "secure tunnel",
+      "v4.2",
+      "login failure"
+    ],
+    "is_user_fixable": true
+  },
+  {
+    "item_id": "INC0076211",
+    "id": "INC0076211",
+    "ticket_id": "INC0076211",
+    "source": "ServiceNow",
+    "category": "SAC Modeling / Formula Syntax & Calculations",
+    "priority": "P3 - Moderate",
+    "title": "Calculated measure showing NA or Division by Zero error",
+    "symptoms": "Story table or planning grid displays #ERR, NA, or Division by Zero warning on calculated KPI measures when denominator accounts contain zero or null values.",
+    "resolution": "Correct parenthetical syntax in the model calculation. Implement a conditional NULL / ZERO check using the NDIV0 or IF function (e.g., NDIV0([Gross Margin] / [Revenue])).",
+    "keywords": [
+      "calculated measure",
+      "na",
+      "division by zero",
+      "ndiv0",
+      "if function",
+      "formula syntax",
+      "null check",
+      "parenthetical syntax"
+    ],
+    "is_user_fixable": true
+  },
+  {
+    "item_id": "INC0065432",
+    "id": "INC0065432",
+    "ticket_id": "INC0065432",
+    "source": "ServiceNow",
+    "category": "SAC Planning / Concurrency & Scheduler Administration",
+    "priority": "P2 - High",
+    "title": "Public version data collision",
+    "symptoms": "Simultaneous data publish or background Multi Action jobs fail with version lock conflict on a shared Public planning version.",
+    "resolution": "Lock collision between multiple concurrent schedulers. Reschedule background copy processes to staggered execution windows in the SAC Calendar.",
+    "keywords": [
+      "public version",
+      "data collision",
+      "lock collision",
+      "concurrent schedulers",
+      "reschedule",
+      "background copy"
+    ],
+    "is_user_fixable": false
   }
 ]

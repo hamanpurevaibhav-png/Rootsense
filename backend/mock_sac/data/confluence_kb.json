@@ -1,9 +1,84 @@
 [
   {
-    "doc_id": "CONF-SAC-8801",
+    "item_id": "CONF_SAC_001",
+    "id": "CONF_SAC_001",
+    "page_id": "CONF_SAC_001",
     "source": "Confluence",
-    "space": "FINANCE_COE",
-    "title": "SAC Corporate Finance Planning Calendar & Data Action Schedule",
-    "content": "DA_OVERHEAD_ALLOCATION runs every hour at :30 past the hour via SYSTEM_SAC_SCHEDULER to redistribute shared corporate overhead across regional cost centers."
+    "category": "SAC SOP / Version Management & Publishing",
+    "title": "SAC Best Practices: Working with Private Draft Versions",
+    "content": "Guides the user on creating a private copy, adjusting numbers safely, and executing version management publish commands: (1) Open the target SAC Planning Story, (2) Click Version Management in the toolbar, (3) Select your uncommitted private version (e.g., Draft_v1), and (4) Click the Publish icon to merge private edits into the Public model category so teammates and managers can view them.",
+    "keywords": [
+      "private draft",
+      "private version",
+      "version management",
+      "publish",
+      "draft_v1",
+      "uncommitted",
+      "manager doesn't see",
+      "best practices"
+    ],
+    "is_user_fixable": true
+  },
+  {
+    "item_id": "CONF_SAC_004",
+    "id": "CONF_SAC_004",
+    "page_id": "CONF_SAC_004",
+    "source": "Confluence",
+    "category": "SAC SOP / Aggregation & Formula Rollup Rules",
+    "title": "SAC Aggregation Rules: Margin Percentages vs Totals",
+    "content": "Explains why ratios and percentages cannot be summed up additively, as formula accounts are calculated as a weighted rollup ratio: [Gross Margin] / [Revenue]. In SAP Analytics Cloud, MARGIN_PCT uses FORMULA aggregation and WEIGHTED_AVG rollup across cost center hierarchies rather than a simple additive SUM of child percentages.",
+    "keywords": [
+      "margin percent",
+      "margin percentages",
+      "gross margin",
+      "sum up percentages",
+      "sum up correctly",
+      "aggregation rules",
+      "weighted_avg",
+      "weighted average",
+      "non-additive",
+      "ratios",
+      "formula"
+    ],
+    "is_user_fixable": true
+  },
+  {
+    "item_id": "CONF_SAC_008",
+    "id": "CONF_SAC_008",
+    "page_id": "CONF_SAC_008",
+    "source": "Confluence",
+    "category": "SAC SOP / Data Locking & Period Close Governance",
+    "title": "Data Lock Consoles & Temporal Hierarchy Policies",
+    "content": "Explains corporate deadlines and locked timeslices to secure historical records. Once a monthly or quarterly planning cycle closes (e.g., JAN_2025_PERIOD / January 2025), Finance Controllers set the slice state to LOCKED in the SAC Data Locking Console. Standard analysts cannot edit locked slices without submitting an IT4You unlock request.",
+    "keywords": [
+      "data lock console",
+      "data locking",
+      "temporal hierarchy",
+      "locked timeslices",
+      "january 2025",
+      "jan 2025",
+      "greyed out",
+      "historical records"
+    ],
+    "is_user_fixable": false
+  },
+  {
+    "item_id": "CONF_SAC_015",
+    "id": "CONF_SAC_015",
+    "page_id": "CONF_SAC_015",
+    "source": "Confluence",
+    "category": "SAC SOP / IT4You L3 Support & COE Escalation",
+    "title": "How to escalate Data Action script bugs to the SAP Center of Excellence (COE) Team",
+    "content": "Process of drafting a debug trace and routing via IT4You: Capture the affected Model ID (e.g., CORP_FINANCE_PLANNING), exact cell coordinates (Account, Version, Cost Center, Time), and chronological audit log evidence showing the SYSTEM_SAC_SCHEDULER Multi Action overwrite. Route the structured JSON payload to group SAP-BTP-PLANNING-L3 with priority P2 - High.",
+    "keywords": [
+      "escalate",
+      "data action script bugs",
+      "sap center of excellence",
+      "coe team",
+      "it4you",
+      "sap-btp-planning-l3",
+      "debug trace"
+    ],
+    "is_user_fixable": false
   }
 ]
