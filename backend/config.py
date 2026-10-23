@@ -33,6 +33,7 @@ SAC_CHANGE_LOG_PATH: Path = MOCK_DATA_DIR / "sac_change_log.json"
 SAC_METADATA_PATH: Path = MOCK_DATA_DIR / "sac_metadata.json"
 SERVICENOW_KB_PATH: Path = MOCK_DATA_DIR / "servicenow_kb.json"
 CONFLUENCE_KB_PATH: Path = MOCK_DATA_DIR / "confluence_kb.json"
+SUBMITTED_TICKETS_PATH: Path = MOCK_DATA_DIR / "submitted_tickets.json"
 
 
 # ---------------------------------------------------------------------------

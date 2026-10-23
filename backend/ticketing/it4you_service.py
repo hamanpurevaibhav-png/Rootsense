@@ -4,7 +4,7 @@ Strictly enforces the Section 5 Structured IT4You Ticketing Payload Contract def
 in rootsense.md and integrates with Neuro-SAN CodedTool / sly_data state channels.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -45,7 +45,7 @@ class IT4YouTicket(BaseModel):
         description="Formatted markdown summarizing log timelines and evidence"
     )
     status: str = Field(default="DRAFT", description="DRAFT or SUBMITTED")
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     def to_contract_dict(self) -> Dict[str, Any]:
         """Serialize ticket to a clean JSON-ready dictionary matching rootsense.md Section 5."""
@@ -81,7 +81,7 @@ class IT4YouTicketingService(CodedTool):
 
     def __init__(self, storage_path: Optional[Path] = None) -> None:
         self.storage_path: Path = Path(
-            storage_path or (config.MOCK_DATA_DIR / "it4you_tickets.json")
+            storage_path or getattr(config, "SUBMITTED_TICKETS_PATH", config.MOCK_DATA_DIR / "submitted_tickets.json")
         )
         self._tickets_cache: Dict[str, IT4YouTicket] = {}
         self._load_existing_tickets()

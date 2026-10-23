@@ -1,0 +1,22 @@
+[
+  {
+    "ticket_id": "IT4U-2026-52433",
+    "title": "[SAC Diagnostic Escalation] - Scheduled Multi Action Overwrite (DA_OVERHEAD_ALLOCATION)",
+    "caller_email": "analyst.user@cognizant.com",
+    "priority": "P2 - High",
+    "category": "SAP Analytics Cloud / Planning COE",
+    "suggested_routing_group": "SAP-BTP-PLANNING-L3",
+    "system_context": {
+      "model_id": "CORP_FINANCE_PLANNING",
+      "coordinates": {
+        "Account": "EXP_TRAVEL_ENTERTAINMENT",
+        "Version": "Public.Forecast_2025",
+        "Time": "202509",
+        "CostCenter": "CC_NA_1020"
+      }
+    },
+    "technical_diagnostic_brief": "### ROOT CAUSE IDENTIFIED\nAt 2025-09-15T10:30:00Z, a scheduled Multi Action (DA_OVERHEAD_ALLOCATION) executed by SYSTEM_SAC_SCHEDULER overrode user analyst.user@cognizant.com's manual entry of 70000.00 to 52000.00.\n\n### CHRONOLOGICAL LOG EVIDENCE\n- 10:14:00Z: User edit (Old: 45000.00 -> New: 70000.00)\n- 10:30:00Z: System Overwrite (Old: 70000.00 -> New: 52000.00)",
+    "status": "SUBMITTED",
+    "created_at": "2026-10-23T06:16:56Z"
+  }
+]
